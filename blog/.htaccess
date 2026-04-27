@@ -1,9 +1,0 @@
-# Mencegah eksekusi script PHP dan script lainnya
-<FilesMatch "\.(php|php4|php5|php7|php8|phtml|pl|py|jsp|asp|htm|shtml|sh|cgi)$">
-    Require all denied
-</FilesMatch>
-
-# Matikan engine PHP (untuk versi Apache lama/mod_php)
-<IfModule mod_php7.c>
-    php_flag engine off
-</IfModule>
