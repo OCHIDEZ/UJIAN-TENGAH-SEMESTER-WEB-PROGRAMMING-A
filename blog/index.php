@@ -10,18 +10,16 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f0f2f5; color: #333; }
         
-        /* --- UPDATE CSS HEADER --- */
         .header { 
             background-color: #2c3e50; 
             color: white; 
-            padding: 10px 25px; /* Sedikit lebih ramping */
+            padding: 10px 25px;
             display: flex; 
             align-items: center; 
         }
 
-        /* Kotak Ikon Abu-abu di Kiri */
         .header-icon {
-            background-color: #455a64; /* Warna abu-abu gelap kotak ikon */
+            background-color: #455a64; 
             width: 36px;
             height: 36px;
             border-radius: 8px;
@@ -33,7 +31,6 @@
             color: #bdc3c7;
         }
 
-        /* Bungkus Teks agar Judul & Sub-judul bertumpuk vertikal */
         .header-text {
             display: flex;
             flex-direction: column;
@@ -48,21 +45,20 @@
 
         .header-text .sub-title {
             font-size: 11px;
-            color: #95a5a6; /* Warna teks lebih pudar */
+            color: #95a5a6;
             margin-top: 2px;
         }
 
         .container { 
             display: flex; 
-            height: calc(100vh - 60px); /* Menyesuaikan tinggi layar dikurangi tinggi header */
+            height: calc(100vh - 60px);
             align-items: flex-start; 
         }
 
         .main-content { 
-            flex: 1; /* Agar konten mengambil sisa ruang di sebelah kanan sidebar */
+            flex: 1; 
             padding: 25px; 
         }
-        /* Sidebar Style - Persis Gambar Tugas */
         .sidebar { width: 260px; padding: 20px; }
         .sidebar-inner { background: white; border-radius: 15px; padding: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .menu-title { padding: 0 25px 15px; font-size: 11px; color: #b0b0b0; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
@@ -80,24 +76,20 @@
             margin-bottom: 2px;
         }
         
-        /* Ikon Sidebar */
         .sidebar li i { margin-right: 15px; width: 20px; text-align: center; color: #888; }
         .sidebar li.active i { 
-        color: #27ae60; /* Warna ikon ikut hijau saat aktif */
+        color: #27ae60;
         }
         .sidebar li:hover { background-color: #f8f9fa; color: #27ae60; }
         
-        /* Menu Aktif dengan Garis Hijau di Samping */
-        /* Update atau pastikan bagian ini di dalam <style> kamu */
         .sidebar li.active { 
-            background-color: #f0fdf4; /* Hijau sangat muda sesuai gambar */
+            background-color: #f0fdf4;
             color: #27ae60; 
             font-weight: 600; 
-            border-left: 4px solid #27ae60; /* Garis tegas di samping kiri */
+            border-left: 4px solid #27ae60;
         }
         .sidebar li.active i { color: #27ae60; }
 
-        /* Main Content & Tables */
         .main-content { flex: 1; padding: 25px; overflow-y: auto; }
         .content-card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
@@ -107,17 +99,14 @@
         th { text-align: left; font-size: 11px; color: #999; padding: 12px; text-transform: uppercase; border-bottom: 1px solid #eee; letter-spacing: 0.5px; }
         td { padding: 15px 12px; font-size: 13px; border-bottom: 1px solid #f9f9f9; vertical-align: middle; }
 
-        /* Buttons */
         .btn { padding: 9px 18px; border: none; border-radius: 6px; cursor: pointer; color: white; font-size: 12px; font-weight: bold; transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; }
         .btn-tambah { background-color: #2ecc71; }
         .btn-edit { background-color: #3498db; margin-right: 5px; }
         .btn-hapus { background-color: #e74c3c; }
         .btn:hover { opacity: 0.8; transform: translateY(-1px); }
 
-        /* Badge untuk Kategori */
         .badge { padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; background: #e3f2fd; color: #1976d2; }
         
-        /* Modal Style */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); }
         .modal-content { background: white; border-radius: 15px; width: 480px; margin: 50px auto; padding: 30px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         
@@ -127,12 +116,12 @@
         
         .btn {
             position: relative;
-            z-index: 10; /* Supaya tombol selalu di atas */
+            z-index: 10;
             cursor: pointer !important;
         }
 
         .modal {
-            z-index: 9999 !important; /* Supaya modal muncul paling depan */
+            z-index: 9999 !important; 
         } 
         .modal-footer { margin-top: 25px; display: flex; justify-content: flex-end; gap: 10px; }
         .btn-batal { background-color: #95a5a6; }
@@ -171,7 +160,6 @@
         let idYangAkanDihapus = null;
         let tipeYangAkanDihapus = '';       
         
-        // --- NAVIGASI ---
         function loadMenu(menu) {
             document.querySelectorAll('.sidebar li').forEach(el => el.classList.remove('active'));
             document.getElementById('menu-' + menu).classList.add('active');
@@ -246,7 +234,7 @@
                 </div>`;
             loadDataArtikel(); 
         }
-    }// Tutup if/else
+    }
     function loadDataArtikel() {
     fetch('ambil_artikel.php')
     .then(response => response.json())
@@ -274,12 +262,8 @@
     });
 }
 
-        // Tampilkan menu kategori secara otomatis saat web dibuka
         window.onload = () => loadMenu('penulis');
 
-        // --- FETCH API: KELOLA KATEGORI ---
-
-        // 1. READ (Menampilkan Data ke Tabel)
         function loadDataKategori() {
         fetch('ambil_kategori.php').then(res => res.json()).then(data => {
             let html = '';
@@ -292,14 +276,12 @@
         });
     }
 
-        // 2. CREATE & UPDATE (Menyimpan Data Baru atau Edit)
         function submitKategori(e) {
-    e.preventDefault(); // Mencegah web reload saat disubmit
+    e.preventDefault();
     const form = document.getElementById('formKategori');
     const formData = new FormData(form);
     const id = document.getElementById('id_kategori').value;
     
-    // Logika: Jika ID kosong berarti Tambah, jika ID terisi berarti Edit
     const url = id ? 'update_kategori.php' : 'simpan_kategori.php';
 
     fetch(url, {
@@ -310,9 +292,8 @@
     .then(hasil => {
         if(hasil.trim() === 'sukses') {
             tutupModalKategori();
-            loadDataKategori(); // Refresh tabel secara otomatis
+            loadDataKategori(); 
             
-            // ---> INI BAGIAN YANG DITAMBAHKAN <---
             tampilkanSukses('Data kategori berhasil ' + (id ? 'diperbarui' : 'ditambahkan') + '!');
             
         } else {
@@ -321,7 +302,6 @@
     });
 }
 
-        // 3. EDIT (Menarik Satu Data ke dalam Modal)
         function editKategori(id) {
             fetch(`ambil_satu_kategori.php?id=${id}`)
             .then(res => res.json())
@@ -336,14 +316,12 @@
             });
         }
 
-        // 4. DELETE (Menghapus Data)
         function hapusKategori(id) { 
             idYangAkanDihapus = id;
             tipeYangAkanDihapus = 'kategori';
          document.getElementById('modalKonfirmasi').style.display = 'block'; 
         }
 
-        // --- FUNGSI TAMPILAN MODAL ---
         function bukaModalKategori() {
         document.getElementById('formKategori').reset();
         document.getElementById('id_kategori').value = '';
@@ -371,7 +349,6 @@ function loadDataPenulis() {
         const formData = new FormData(form);
         const id = document.getElementById('id_penulis').value;
 
-        // 1. Validasi Password
         if (!id && !formData.get('password')) {
             alert("Peringatan: Password wajib diisi untuk penulis baru!");
             return; // Hentikan proses jika gagal validasi
@@ -381,7 +358,6 @@ function loadDataPenulis() {
             return;
         }
 
-        // 2. Validasi File Foto (Maks 2MB & Hanya JPG/PNG)
         const fileFoto = form.querySelector('input[type="file"]').files[0];
         if (fileFoto) {
             const tipeFile = fileFoto.type;
@@ -411,7 +387,6 @@ function loadDataPenulis() {
             }
         });
     }
-// --- FUNGSI EDIT PENULIS ---
 function editPenulis(id) {
     fetch(`ambil_satu_penulis.php?id=${id}`)
     .then(res => res.json())
@@ -431,7 +406,6 @@ function editPenulis(id) {
     });
 }
 
-// --- FUNGSI HAPUS PENULIS ---
 function hapusPenulis(id) { 
     idYangAkanDihapus = id; 
     tipeYangAkanDihapus = 'penulis'; 
@@ -467,7 +441,6 @@ function bukaModalArtikel() {
     document.getElementById('modalTitleArtikel').innerText = 'Tambah Artikel'; 
     document.querySelector('#formArtikel button[type="submit"]').innerText = 'Simpan Data';
     
-    // Tarik data dropdown langsung
     fetch('ambil_penulis.php').then(res => res.json()).then(data => {
         let opt = '<option value="">Pilih Penulis</option>';
         data.forEach(p => opt += `<option value="${p.id}">${p.nama_depan} ${p.nama_belakang}</option>`);
@@ -487,7 +460,6 @@ function bukaModalArtikel() {
             const formData = new FormData(form);
             const idArtikel = document.getElementById('id_artikel').value;
             
-            // Validasi File Gambar Artikel (Maks 2MB & Hanya JPG/PNG)
             const fileGambar = form.querySelector('input[name="gambar"]').files[0];
             if (fileGambar) {
                 const tipeFile = fileGambar.type;
@@ -503,7 +475,6 @@ function bukaModalArtikel() {
                 }
             }
 
-            // Validasi Kategori dan Penulis tidak boleh kosong
             if (formData.get('id_penulis') === "" || formData.get('id_kategori') === "") {
                 alert("Peringatan: Penulis dan Kategori wajib dipilih!");
                 return;
@@ -523,7 +494,6 @@ function bukaModalArtikel() {
                 }
             });
         }
-// --- FUNGSI UNTUK MENGAMBIL DATA ARTIKEL YANG AKAN DIEDIT ---
         function editArtikel(id) {
             fetch(`ambil_satu_artikel.php?id=${id}`)
             .then(res => res.json())
@@ -535,9 +505,7 @@ function bukaModalArtikel() {
                 document.getElementsByName('judul')[0].value = data.judul;
                 document.getElementsByName('isi')[0].value = data.isi;
                 
-                // Panggil bukaModalArtikel tanpa reset ID untuk isi dropdown
                 document.getElementById('modalArtikel').style.display = 'block';
-                // Set value dropdown setelah fetch selesai
                 setTimeout(() => {
                     document.getElementById('opt_penulis').value = data.id_penulis;
                     document.getElementById('opt_kategori').value = data.id_kategori;
@@ -545,14 +513,12 @@ function bukaModalArtikel() {
             });
         }
 
-// --- FUNGSI HAPUS ARTIKEL ---
 function hapusArtikel(id) {
     idYangAkanDihapus = id;
         tipeYangAkanDihapus = 'artikel';
         document.getElementById('modalKonfirmasi').style.display = 'block';
     }
         
-        // Jangan lupa fungsi penutup modal yang umum
         function tutupModal(idModal) {
             document.getElementById(idModal).style.display = 'none';
         }
