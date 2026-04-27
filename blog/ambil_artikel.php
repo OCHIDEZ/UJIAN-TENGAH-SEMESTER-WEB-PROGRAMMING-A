@@ -1,7 +1,6 @@
 <?php
 require 'koneksi.php';
 
-// Sesuaikan kolom: artikel.isi (bukan isi_artikel)
 $sql = "SELECT 
             artikel.id, 
             artikel.judul, 
